@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 97%;
+    --foreground: 220 20% 12%;
+
+    --card: 40 30% 99%;
+    --card-foreground: 220 20% 12%;
+
+    --popover: 40 30% 99%;
+    --popover-foreground: 220 20% 12%;
+
+    --primary: 24 80% 50%;
+    --primary-foreground: 40 33% 97%;
+
+    --secondary: 220 16% 22%;
+    --secondary-foreground: 40 33% 97%;
+
+    --muted: 35 20% 92%;
+    --muted-foreground: 220 10% 46%;
+
+    --accent: 43 96% 56%;
+    --accent-foreground: 220 20% 12%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 40 33% 97%;
+
+    --border: 35 18% 86%;
+    --input: 35 18% 86%;
+    --ring: 24 80% 50%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Custom tokens */
+    --saffron: 24 80% 50%;
+    --saffron-light: 30 85% 65%;
+    --navy: 220 16% 22%;
+    --navy-light: 220 12% 35%;
+    --cream: 40 33% 97%;
+    --warm-gray: 35 10% 60%;
+    --gold: 43 96% 56%;
+    --success: 152 60% 40%;
+
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'DM Sans', sans-serif;
+
+    --shadow-book: 4px 4px 15px -3px hsl(220 16% 22% / 0.15), 
+                   0 2px 6px -2px hsl(220 16% 22% / 0.1);
+    --shadow-book-hover: 8px 8px 25px -5px hsl(220 16% 22% / 0.25),
+                         0 4px 10px -3px hsl(220 16% 22% / 0.15);
+    --shadow-card: 0 1px 3px hsl(220 16% 22% / 0.08),
+                   0 4px 12px hsl(220 16% 22% / 0.05);
+    --shadow-elevated: 0 10px 40px -10px hsl(24 80% 50% / 0.15),
+                       0 4px 16px -4px hsl(220 16% 22% / 0.1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .book-shadow {
+    box-shadow: var(--shadow-book);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .book-shadow:hover {
+    box-shadow: var(--shadow-book-hover);
+  }
+  .card-shadow {
+    box-shadow: var(--shadow-card);
+  }
+  .elevated-shadow {
+    box-shadow: var(--shadow-elevated);
+  }
+  .text-gradient-saffron {
+    background: linear-gradient(135deg, hsl(var(--saffron)), hsl(var(--gold)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .bg-gradient-saffron {
+    background: linear-gradient(135deg, hsl(var(--saffron)), hsl(var(--saffron-light)));
+  }
+  .bg-gradient-navy {
+    background: linear-gradient(135deg, hsl(var(--navy)), hsl(var(--navy-light)));
+  }
+  .bg-gradient-warm {
+    background: linear-gradient(180deg, hsl(var(--cream)) 0%, hsl(var(--muted)) 100%);
+  }
+  .perspective-book {
+    perspective: 800px;
+  }
+  .book-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+  }
+  .book-3d:hover {
+    transform: rotateY(-15deg) rotateX(5deg) translateZ(10px);
+  }
+  .nav-link {
+    @apply relative text-foreground/70 transition-colors duration-200;
+  }
+  .nav-link:hover {
+    @apply text-foreground;
+  }
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--warm-gray));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--saffron));
+}
